@@ -33,7 +33,6 @@ import {
   Users,
   FileText,
   BookmarkIcon,
-  Home,
 } from "lucide-react"
 import { ThemeToggle } from "@/components/theme-toggle"
 import { EnhancedSearch } from "@/components/enhanced-search"
@@ -74,19 +73,16 @@ export function MainNav({ currentPage = "", showSearch = false, notifications = 
     switch (userType) {
       case "job-seeker":
         return [
-          { href: "/", label: "Home", active: currentPage === "home" },
           { href: "/job-seeker", label: "Jobs", active: currentPage === "jobs" },
           { href: "/job-seeker/profile", label: "Profile", active: currentPage === "profile" },
         ]
       case "employer":
         return [
-          { href: "/", label: "Home", active: currentPage === "home" },
           { href: "/employer", label: "Dashboard", active: currentPage === "dashboard" },
           { href: "/employer/profile", label: "Profile", active: currentPage === "profile" },
         ]
       default:
         return [
-          { href: "/", label: "Home", active: currentPage === "home" },
           { href: "#jobs", label: "Jobs", active: false },
           { href: "#companies", label: "Companies", active: false },
           { href: "#about", label: "About", active: false },
@@ -114,10 +110,10 @@ export function MainNav({ currentPage = "", showSearch = false, notifications = 
         <div className="flex justify-between items-center h-16">
           {/* Logo and Desktop Navigation */}
           <div className="flex items-center space-x-8">
-            <div className="flex items-center space-x-2">
+            <a href="/" className="flex items-center space-x-2 cursor-pointer hover:opacity-80 transition-opacity">
               <Briefcase className="h-8 w-8 text-primary" />
               <span className="font-geist text-2xl font-bold text-foreground">QuickHire</span>
-            </div>
+            </a>
 
             {/* Desktop Navigation */}
             <div className="hidden md:flex">
@@ -370,7 +366,6 @@ export function MainNav({ currentPage = "", showSearch = false, notifications = 
                         asChild
                       >
                         <a href={link.href}>
-                          {link.label === "Home" && <Home className="mr-2 h-4 w-4" />}
                           {link.label === "Jobs" && <Search className="mr-2 h-4 w-4" />}
                           {link.label === "Dashboard" && <Building className="mr-2 h-4 w-4" />}
                           {link.label === "Profile" && <User className="mr-2 h-4 w-4" />}
